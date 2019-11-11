@@ -11,12 +11,11 @@
   <body>
     <header id="header">
       <div id="menu">
-        <div id="branding">
-          <img src="http://via.placeholder.com/360x80">
+        <div id="branding"></div>
           <div id="minimenu">
             <i class="fa fa-bars"></i>
           </div>
-          <nav id="nav">
+          <nav class="nav">
             <ul>
               <li><a href="#home">Home</a></li>
               <li><a href="#about">About</a></li>
@@ -25,7 +24,6 @@
               <li><a href="#extra">Extra</a></li>
             </ul>
           </nav>
-        </div>
       </div>
     </header>
 
@@ -80,7 +78,7 @@
       <section id="extra" class="section">
         <header>
           <h1>Extra</h1>
-          <h2>Honestly don't know why this is here</h2>
+          <h2>Some more before you leave</h2>
         </header>
         <article>
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
@@ -91,5 +89,34 @@
       </section>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      $(function(){
+        $('#minimenu').click(function(){
+          $('.nav').slideToggle();
+        });
+
+        $(window).bind('resize',function(){
+          if($('#minimenu').css('display')=='none'){
+            $('.nav').show();
+          }else{
+            $('.nav').hide();
+          }
+        });
+
+        $('.nav li a').click(function(event){
+          var targetSection = $(this).attr('href');
+          var scrlTo = $(targetSection).offset().top;
+          $('html, body').animate({
+            scrollTop:scrlTo
+          },800)
+        });
+
+        if($('#minimenu').css('display')=='block'){
+          $('.nav').slideUp();
+        }
+        event.preventDefault();
+      })
+    </script>
   </body>
 </html>
